@@ -7,9 +7,6 @@ using System.Linq;
 using Microsoft.Crm.Sdk.Messages;
 using MarkMpn.Sql4Cds.Engine.ExecutionPlan;
 using System.Threading;
-using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.ApplicationInsights.Channel;
 #if NETCOREAPP
 using Microsoft.PowerPlatform.Dataverse.Client;
 #else
@@ -25,7 +22,6 @@ namespace MarkMpn.Sql4Cds.Engine
     public class Sql4CdsConnection : DbConnection
     {
         private readonly DefaultQueryExecutionOptions _options;
-        private readonly TelemetryClient _ai;
         private readonly SessionContext _session;
 
         /// <summary>
@@ -60,19 +56,7 @@ namespace MarkMpn.Sql4Cds.Engine
             _options = new DefaultQueryExecutionOptions(this, dataSources.First().Value, CancellationToken.None);
             _session = new SessionContext(dataSources, _options);
 
-            var aiConfig = new Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration
-            {
-                ConnectionString = "InstrumentationKey=79761278-a908-4575-afbf-2f4d82560da6",
-            };
-            aiConfig.TelemetryProcessorChainBuilder.Use(StripDeviceNameTelemetry);
-            _ai = new TelemetryClient(aiConfig);
-
             ApplicationName = "SQL 4 CDS ADO.NET Provider";
-        }
-
-        private ITelemetryProcessor StripDeviceNameTelemetry(ITelemetryProcessor next)
-        {
-            return new StripDeviceNameTelemetryProcessor(next);
         }
 
         private static IOrganizationService Connect(string connectionString)
@@ -234,8 +218,6 @@ namespace MarkMpn.Sql4Cds.Engine
         /// </remarks>
         public bool IncludeDetailedErrorTelemetry { get; set; }
 
-        internal TelemetryClient TelemetryClient => _ai;
-
         /// <summary>
         /// Triggered before one or more records are about to be deleted
         /// </summary>
@@ -376,23 +358,6 @@ namespace MarkMpn.Sql4Cds.Engine
         public new Sql4CdsCommand CreateCommand()
         {
             return new Sql4CdsCommand(this);
-        }
-
-        private class StripDeviceNameTelemetryProcessor : ITelemetryProcessor
-        {
-            private readonly ITelemetryProcessor _next;
-
-            public StripDeviceNameTelemetryProcessor(ITelemetryProcessor next)
-            {
-                _next = next;
-            }
-
-            public void Process(ITelemetry item)
-            {
-                item.Context.Cloud.RoleInstance = null;
-                item.Context.Cloud.RoleName = null;
-                _next.Process(item);
-            }
         }
     }
 }

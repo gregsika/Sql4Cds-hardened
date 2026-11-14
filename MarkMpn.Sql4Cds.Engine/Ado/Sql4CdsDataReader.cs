@@ -114,10 +114,7 @@ namespace MarkMpn.Sql4Cds.Engine
                     }
 
                     if (!caught)
-                    {
-                        _command.TrackException(ex);
                         throw;
-                    }
 
                     _errorDetails.Push(ex.Errors[0]);
                 }
@@ -638,7 +635,6 @@ namespace MarkMpn.Sql4Cds.Engine
             catch (Exception ex)
             {
                 _error = true;
-                _command.TrackException(ex);
                 _reader.Close();
                 _reader = null;
 

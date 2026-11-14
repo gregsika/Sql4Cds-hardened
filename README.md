@@ -79,6 +79,19 @@ select @userid, @orgid, @buid
 select * from WhoAmI()
 ```
 
+## Building on macOS
+
+Install the .NET 10 SDK and build the cross-platform projects with:
+
+```sh
+dotnet build MarkMpn.Sql4Cds.CrossPlatform.slnf
+```
+
+The VS Code build task uses this filter on macOS. It includes the engine, export, language
+server, sponsorship application, and their cross-platform test projects. The full solution
+also contains Windows-only Visual Studio and .NET Framework projects and requires Windows
+and Visual Studio build tools.
+
 ## FetchXML Builder Integration
 
 As well as writing and executing queries as SQL, the generated FetchXML can be sent to [FetchXML Builder](https://fetchxmlbuilder.com/)

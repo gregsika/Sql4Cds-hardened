@@ -1,0 +1,13 @@
+{
+  "solution": {
+    "path": "MarkMpn.Sql4Cds.sln",
+    "projects": [
+      "MarkMpn.Sql4Cds.AIGitHubSponsorship/MarkMpn.Sql4Cds.AIGitHubSponsorship.csproj",
+      "MarkMpn.Sql4Cds.Engine.Tests.NetCore/MarkMpn.Sql4Cds.Engine.Tests.NetCore.csproj",
+      "MarkMpn.Sql4Cds.Engine/MarkMpn.Sql4Cds.Engine.csproj",
+      "MarkMpn.Sql4Cds.Export/MarkMpn.Sql4Cds.Export.csproj",
+      "MarkMpn.Sql4Cds.LanguageServer.Tests/MarkMpn.Sql4Cds.LanguageServer.Tests.csproj",
+      "MarkMpn.Sql4Cds.LanguageServer/MarkMpn.Sql4Cds.LanguageServer.csproj"
+    ]
+  }
+}
