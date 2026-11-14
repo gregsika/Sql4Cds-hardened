@@ -4,7 +4,6 @@ using System.ServiceModel.Channels;
 using MarkMpn.Sql4Cds.LanguageServer.Connection;
 using Microsoft.SqlTools.ServiceLayer.Scripting.Contracts;
 using StreamJsonRpc;
-using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace MarkMpn.Sql4Cds.LanguageServer.Scripting
 {
