@@ -9,7 +9,7 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <PackageId>MarkMpn.Sql4Cds.Engine</PackageId>
-    <Version>10.5.1-hardened</Version>
+    <Version>10.6.0-hardened</Version>
     <Authors>Mark Carrington, Hardened for LinqPadDataverseDriver</Authors>
     <Description>Hardened SQL 4 CDS Engine without Application Insights telemetry and with strict TLS on TDS endpoints.</Description>
     <PackageProjectUrl>https://github.com/gregsika/Sql4Cds-hardened</PackageProjectUrl>
